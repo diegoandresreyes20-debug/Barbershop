@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navaja Barbershop | Estilo y Tradición</title>
+    <style>
+        /* Variables de diseño */
+        :root {
+            --color-principal: #121212;
+            --color-secundario: #1a1a1a;
+            --color-acento: #c5a880; /* Tono dorado/bronce */
+            --color-texto: #e0e0e0;
+            --color-texto-oscuro: #888888;
+            --fuente-titulo: 'Playfair Display', Georgia, serif;
+            --fuente-cuerpo: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --color-whatsapp: #25D366; /* Verde oficial WhatsApp */
+        }
+
+        /* Estilos Generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-principal);
+            color: var(--color-texto);
+            font-family: var(--fuente-cuerpo);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navegación */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: var(--fuente-titulo);
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--color-acento);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-acento);
+        }
+
+        /* Sección Héroe (Inicio) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(18, 18, 18, 1)), 
+                        url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--fuente-titulo);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--color-texto-oscuro);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .btn-reserva {
+            display: inline-block;
+            background-color: var(--color-acento);
+            color: var(--color-principal);
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-reserva:hover {
+            background-color: #b39670;
+            transform: translateY(-2px);
+        }
+
+        /* Secciones Comunes */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--fuente-titulo);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--color-acento);
+            margin: 15px auto 0;
+        }
+
+        /* Servicios */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .servicio-card {
+            background-color: var(--color-secundario);
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid rgba(197, 168, 128, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-acento);
+        }
+
+        .servicio-card h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--color-acento);
+        }
+
+        .servicio-precio {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .servicio-card p {
+            color: var(--color-texto-oscuro);
+            font-size: 0.95rem;
+        }
+
+        /* Nosotros */
+        .nosotros-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .nosotros-content {
+                flex-direction: row;
+            }
+        }
+
+        .nosotros-texto {
+            flex: 1;
+        }
+
+        .nosotros-texto p {
+            margin-bottom: 20px;
+            color: var(--color-texto-oscuro);
+        }
+
+        .nosotros-imagen {
+            flex: 1;
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            background: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800') no-repeat center center/cover;
+            border-radius: 4px;
+            border: 1px solid var(--color-acento);
+        }
+
+        /* Contacto e Información de Horarios */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .info-contacto h3, .horarios h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color-acento);
+        }
+
+        .info-contacto p, .horarios p {
+            margin-bottom: 15px;
+            color: var(--color-texto-oscuro);
+        }
+
+        .horario-lista {
+            list-style: none;
+        }
+
+        .horario-lista li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ventana Emergente (Modal de Reserva) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: var(--color-secundario);
+            margin: 5% auto; 
+            padding: 30px;
+            border: 1px solid var(--color-acento);
+            width: 90%;
+            max-width: 900px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--color-acento);
+        }
+
+        .modal h2 {
+            font-family: var(--fuente-titulo);
+            color: var(--color-acento);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Grid de Barberos */
+        .barber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .barber-card {
+            background-color: var(--color-principal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .barber-card:hover {
+            border-color: var(--color-acento);
+        }
+
+        .barber-avatar {
+            width: 70px;
+            height: 70px;
+            background-color: var(--color-secundario);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--color-acento);
+            border: 1px solid var(--color-acento);
+        }
+
+        .barber-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .barber-info {
+            font-size: 0.85rem;
+            color: var(--color-texto-oscuro);
+            margin-bottom: 15px;
+        }
+
+        .btn-select-barber {
+            background-color: transparent;
+            color: var(--color-acento);
+            border: 1px solid var(--color-acento);
+            padding: 8px 15px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-select-barber:hover {
+            background-color: var(--color-acento);
+            color: var(--color-principal);
+        }
+
+        /* Tarjeta de Contacto Directo */
+        .contacto-directo-card {
+            display: none;
+            max-width: 500px;
+            margin: 20px auto 0;
+            background-color: var(--color-principal);
+            padding: 35px 25px;
+            border-radius: 4px;
+            border: 1px solid var(--color-acento);
+            text-align: center;
+        }
+
+        .contacto-directo-card p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-whatsapp);
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            display: block;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-cancel:hover {
+            background-color: #444;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b0b0b;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(197, 168, 128, 0.1);
+            font-size: 0.85rem;
+            color: var(--color-texto-oscuro);
+        }
+
+        /* Diseño Responsivo */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado de Navegación -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">NAVAJA BARBERSHOP</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección de Inicio -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <p>BARBERÍA CLÁSICA Y MODERNA</p>
+            <h1>Corte de Cabello y Cuidado de Barba</h1>
+            <p>Brindamos servicios de calidad con atención personalizada.</p>
+            <button class="btn-reserva" onclick="openModal()">Agendar Cita</button>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <h3>Corte Clásico</h3>
+                    <div class="servicio-precio">$10</div>
+                    <p>Corte personalizado con tijera o máquina, lavado y peinado con cera o pomada.</p>
+                </div>
+                <div class="servicio-card">
+                    <h3>Perfilado de Barba</h3>
+                    <div class="servicio-precio">$5</div>
+                    <p>Diseño y delineado de barba con navaja libre, aceites hidratantes y toalla caliente.</p>
+                </div>
+                <div class="servicio-card">
+                    <h3>Servicio Completo</h3>
+                    <div class="servicio-precio">$15</div>
+                    <p>Corte de cabello completo combinado con perfilado y tratamiento para la barba.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros" style="background-color: var(--color-secundario);">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="nosotros-content">
+                <div class="nosotros-texto">
+                    <p>En <strong>Navaja Barbershop</strong> combinamos las técnicas tradicionales de la barbería clásica con las tendencias modernas del diseño de imagen masculina.</p>
+                    <p>Nuestro espacio está pensado para que te relajes y disfrutes de un servicio dedicado, en un ambiente cómodo y con profesionales comprometidos con los detalles.</p>
+                </div>
+                <div class="nosotros-imagen"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto e Información -->
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Ubicación y Reservas</h2>
+            <div class="contacto-grid">
+                <div class="info-contacto">
+                    <h3>Contacto</h3>
+                    <p><strong>Dirección:</strong> Av. Principal #123, Ciudad de México</p>
+                    <p><strong>Teléfono:</strong> +52 55 1234 5678</p>
+                    <p><strong>Email:</strong> contacto@navajabarber.com</p>
+                    <p>Para agendar un turno directo, puedes llamarnos o escribirnos por nuestras redes.</p>
+                </div>
+                <div class="horarios">
+                    <h3>Horarios de Atención</h3>
+                    <ul class="horario-lista">
+                        <li><span>Lunes a Viernes</span> <span>09:00 - 20:00</span></li>
+                        <li><span>Sábados</span> <span>09:00 - 18:00</span></li>
+                        <li><span>Domingos</span> <span>Cerrado</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Reserva -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            
+            <div id="step-barbers">
+                <h2>Elige tu Barbero</h2>
+                <div class="barber-grid" id="barberList">
+                    <!-- Cargados dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Sección de información del Barbero y enlace de WhatsApp -->
+            <div id="step-confirm" class="contacto-directo-card">
+                <h2>Información de Contacto</h2>
+                
+                <p id="selected-barber-info"></p>
+                
+                <!-- Botón directo a WhatsApp -->
+                <a id="btn-whatsapp-link" href="#" target="_blank" class="btn-whatsapp">
+                    Contactar por WhatsApp
+                </a>
+                
+                <button type="button" class="btn-cancel" onclick="backToBarbers()">Atrás</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de Página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Navaja Barbershop. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Listado de barberos. Los teléfonos se estructuran sin símbolos para la API de WhatsApp
+        const barberos = [
+            { id: 1, nombre: "Carlos Gómez", telefono_formateado: "+52 55 1111 0001", telefono_wa: "525511110001", horario: "09:00 - 15:00" },
+            { id: 2, nombre: "Mateo Ruiz", telefono_formateado: "+52 55 1111 0002", telefono_wa: "525511110002", horario: "10:00 - 16:00" },
+            { id: 3, nombre: "Sofía Delgado", telefono_formateado: "+52 55 1111 0003", telefono_wa: "525511110003", horario: "11:00 - 17:00" },
+            { id: 4, nombre: "Diego Torres", telefono_formateado: "+52 55 1111 0004", telefono_wa: "525511110004", horario: "12:00 - 18:00" },
+            { id: 5, nombre: "Andrés Silva", telefono_formateado: "+52 55 1111 0005", telefono_wa: "525511110005", horario: "13:00 - 19:00" },
+            { id: 6, nombre: "Lucas Herrera", telefono_formateado: "+52 55 1111 0006", telefono_wa: "525511110006", horario: "14:00 - 20:00" },
+            { id: 7, nombre: "Javier Peralta", telefono_formateado: "+52 55 1111 0007", telefono_wa: "525511110007", horario: "09:00 - 14:00" },
+            { id: 8, nombre: "Elena Castro", telefono_formateado: "+52 55 1111 0008", telefono_wa: "525511110008", horario: "15:00 - 20:00" },
+            { id: 9, nombre: "Hugo Mendoza", telefono_formateado: "+52 55 1111 0009", telefono_wa: "525511110009", horario: "09:00 - 17:00" },
+            { id: 10, nombre: "Marcos Medina", telefono_formateado: "+52 55 1111 0010", telefono_wa: "525511110010", horario: "11:00 - 19:00" }
+        ];
+
+        function renderBarbers() {
+            const listContainer = document.getElementById('barberList');
+            listContainer.innerHTML = '';
+
+            barberos.forEach(barbero => {
+                const card = document.createElement('div');
+                card.className = 'barber-card';
+                card.innerHTML = `
+                    <div class="barber-avatar">✂</div>
+                    <div class="barber-name">${barbero.nombre}</div>
+                    <div class="barber-info">
+                        <strong>Tel:</strong> ${barbero.telefono_formateado}<br>
+                        <strong>Horario:</strong> ${barbero.horario}
+                    </div>
+                    <button class="btn-select-barber" onclick="selectBarber(${barbero.id})">Seleccionar</button>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function openModal() {
+            document.getElementById('bookingModal').style.display = "block";
+            backToBarbers();
+            renderBarbers();
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = "none";
+        }
+
+        function selectBarber(id) {
+            const barbero = barberos.find(b => b.id === id);
+            
+            document.getElementById('step-barbers').style.display = "none";
+            const confirmStep = document.getElementById('step-confirm');
+            confirmStep.style.display = "block";
+
+            // Mostrar información detallada del barbero
+            document.getElementById('selected-barber-info').innerHTML = `
+                Has seleccionado a:<br>
+                <span style="font-size: 1.5rem; font-weight: bold; color: var(--color-acento); display: block; margin: 10px 0;">
+                    ${barbero.nombre}
+                </span>
+                <strong>Teléfono:</strong> ${barbero.telefono_formateado}<br>
+                <strong>Horario de atención:</strong> ${barbero.horario}<br><br>
+                Presiona el siguiente botón para coordinar tu cita directamente con él por chat privado.
+            `;
+
+            // Construir mensaje predeterminado para el enlace de WhatsApp
+            const mensajeOriginal = `Hola ${barbero.nombre}, me gustaría agendar una cita contigo en Navaja Barbershop.`;
+            const mensajeCodificado = encodeURIComponent(mensajeOriginal);
+            
+            // Asignar el enlace dinámico al botón de WhatsApp
+            const waButton = document.getElementById('btn-whatsapp-link');
+            waButton.href = `https://wa.me/${barbero.telefono_wa}?text=${mensajeCodificado}`;
+        }
+
+        function backToBarbers() {
+            document.getElementById('step-barbers').style.display = "block";
+            document.getElementById('step-confirm').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
